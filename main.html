@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>    
+        <title>Geolocalizacion</title>
+        <meta charset="UTF-8">     
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <!-- flat-ui bootstrap -->
+        <link href="css/flat-ui.css" rel="stylesheet">
+        <!-- floaing-menu -->
+        <link href="css/floating-menu.css" rel="stylesheet">
+        <!-- leaflet -->
+        <link href="css/leaflet.css" rel="stylesheet"/>
+        <!-- leaflet.awesome -->
+        <link href="css/leaflet.awesome-markers.css" rel="stylesheet"/>
+        <!-- markerCluster -->
+        <link href="css/MarkerCluster.Default.css" rel="stylesheet"/>
+        <link href="css/MarkerCluster.css" rel="stylesheet"/>
+        <!-- font-awesome -->
+        <link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+              integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+              crossorigin=""/>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
+
+        <script src="js/lib/leaflet-src.js"></script>
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <!-- jquery / zepto -->
+        <!-- <script src="js/lib/zepto.min.js"></script> -->
+        <script src="js/lib/jquery-2.0.3.min.js"></script>
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+                integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+        crossorigin=""></script>
+        <!-- twitter bootstrap -->
+        <script src="js/lib/bootstrap.min.js"></script>
+        <!-- floating menu -->
+        <script src="js/floating-menu.js"></script>
+        <!-- leaflet -->
+        <script src="js/lib/leaflet.js"></script>
+        <!-- markerCluster -->
+        <script src="js/lib/leaflet.markercluster.min.js"></script>
+        <!-- leaflet.awesome -->
+        <script src="js/lib/leaflet.awesome-markers.min.js"></script>
+        <!-- spin.js -->
+        <script src="js/lib/leaflet.spin.js"></script>
+        <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
+        <script src="leaflet-plugins-1.9.3\layer\tile\Google.js"></script>
+
+
+    </head>
+    <body>
+        <div class="row">
+            <div id="paisdigitalizq" class="col-xs-6 col-sm-6 col-md-6 ">
+                <img title="IDE" src="image/logoizquierda.png" style="width: 556px"> 
+            </div>
+            <div id="paisdigitalder" class="col-xs-6 col-sm-6 col-md-6">
+                <img title="Logo Municipalidad" src="image/logoderecha.png" style="width: 556px;height: 80px;float:right" alt=""> 
+            </div>
+        </div>
+        <div class="row">
+            <div id="cd-nav" class="is-fixed">
+                <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+                <nav id="cd-main-nav">
+                    <div class="todo">
+                        <div class="todo-search">
+                            <input class="todo-search-field" id="direccion" style="width:80%;height: 10%" type="search" value="" placeholder="buscar..."> 
+                            <button style="background-color: transparent;margin: 5px" onclick="direccion_buscador();">
+                                <img src="image/iconos/lupa_azul.png" style="width: 20px;margin-bottom: 5px;" alt="buscar" id="buscar"> 
+                            </button>                            
+                            <div id="resultado" style="height: 111px;overflow-y: scroll;display:none"></div>
+
+                        </div>                        
+                        <div class="panel panel-default">
+                            <!-- List group -->
+                            <ul class="list-group">                              
+                                <li class="list-group-item">
+                                    Puntos Digitales
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="puntosDigitales" name="someSwitchOption001" type="checkbox"/>
+                                        <label for="puntosDigitales" class="label-primary"></label>
+                                    </div>                                    
+                                </li>
+                                <li class="list-group-item itemsPuntos item" style='display:none;'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?SERVICE=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Puntos digitales - 4326&style=PuntosDigitales&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Centro Transmisión de Datos
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="transmisionDatos" name="someSwitchOption001" type="checkbox"/>
+                                        <label for="transmisionDatos" class="label-success"></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item itemsTransmision item" style='display:none'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Centro transmision datos - 4326&style=CentroTransmisionDatos&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Sucursales Correo
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="sucursalesCorreo" name="someSwitchOption001" type="checkbox"/>
+                                        <label for="sucursalesCorreo" class="label-info"></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item itemsCorreo item" style='display:none'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Sucursales correo - 4326&style=SucursalesCorreo&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>                                
+                                <li class="list-group-item">
+                                    Antenas Satelitales
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="antenasSatelitales" name="someSwitchOption001" type="checkbox"/>
+                                        <label for="antenasSatelitales" class="label-warning"></label>
+                                    </div>
+                                </li>   
+                                <li class="list-group-item itemsAntena item" style='display:none'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Antenas satelitales - 4326&style=AntenasSatelitales&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>                                
+                                <li class="list-group-item">
+                                    Establecimientos Educativos
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="establecimientosEducativos" name="someSwitchOption001" type="checkbox"/>
+                                        <label for="establecimientosEducativos" class="label-danger"></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item itemsEstablecimiento item" style='display:none'>                                        
+                                    <input class="checkbox_options" id="estadoInternet" type="checkbox" /> Estado Internet
+                                </li>
+                                <li class="list-group-item itemsInternet item" style='display:none'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Establecimientos educativos - Estado internet - 4326&style=EstablecimientosEducativos-EstadoInternet&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE;columnheight:90px" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item itemsEstablecimiento item" style='display:none'>                                        
+                                    <input class="checkbox_options" id="InstalacionElectrica" type="checkbox" /> Tipo Instalación Eléctrica
+                                </li> 
+                                <li class="list-group-item itemsElectrica item" style='display:none'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Establecimientos educativos - Tipo instalación eléctrica - 3857&style=EstablecimientosEducativos-TipoInstalacionElectrica&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Ejidos Municipales
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="ejidos" name="someSwitchOption001" type="checkbox"/>
+                                        <label for="ejidos" class="label-primary"></label>
+                                    </div>                                    
+                                </li>
+                                <li class="list-group-item itemsEjidos item" style='display:none;'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Ejidos municipales - Censo 2010 - 4326&style=EjidosMunicipales_datos2010_rellenoyborde&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Capa Base
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="capasBase" name="someSwitchOption001" type="checkbox" checked disabled/>
+                                        <label for="capasBase" class="label-default"></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item itemsBase">                                        
+                                    <input class="checkbox_options" type="radio" id="calles" name="base" checked/> Open Street Map (Calles)
+                                </li>
+                                <li class="list-group-item itemsBase">                                        
+                                    <input class="checkbox_options" type="radio" id="satelite" name="base" /> Open Street Map (Satélite)
+                                </li> 
+                                <li class="list-group-item itemsBase">                                        
+                                    <input class="checkbox_options" type="radio" id="dark" name="base" /> Open Street Map (Dark)
+                                </li>
+                                
+                                <!--
+                                <li class="list-group-item itemsBase item" style='display:none'>                                        
+                                    <input class="checkbox_options" type="radio" id="gcalles" name="base" /> Google Map (Calles)
+                                </li> 
+                                <li class="list-group-item itemsBase item" style='display:none'>                                        
+                                    <input class="checkbox_options" type="radio" id="gsatelite" name="base" /> Google Map (Satélite)
+                                </li>
+                                <li class="list-group-item itemsBase item" style='display:none'>                                        
+                                    <input class="checkbox_options" type="radio" id="ghibrido" name="base" /> Google Map (Híbrido)
+                                </li>
+                                -->
+                                <li class="list-group-item">
+                                    WMS IGN
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="wmsign" name="someSwitchOption001" type="checkbox" />
+                                        <label for="capasBase" class="label-default"></label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item itemsLimites">                                        
+                                    <input class="checkbox_options" type="checkbox" id="limites" /> Límite administrativo
+                                </li>
+                                <li class="list-group-item itemsLimites"> 
+                                    <img src="http://wms.ign.gob.ar:8080/geoserver/ows?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=ideign:LIMITE_POLITICO_ADMINISTRATIVO&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>                                
+                            </ul>
+                        </div> 
+                    </div> 
+                </nav>    
+                <div class="col-xs-12 col-sm-12 col-md-12" id="mapid" style="clear: both">    
+                </div>
+            </div>         
+        </div>  
+        <script src="js/main.js"></script>
+        <script>
+
+                                var feature;
+                                var map;
+                                function elegirDireccion(lat1, lng1, lat2, lng2, tipo_osm) {
+                                    var loc1 = new L.LatLng(lat1, lng1);
+                                    var loc2 = new L.LatLng(lat2, lng2);
+                                    var bounds = new L.LatLngBounds(loc1, loc2);
+
+                                    if (feature) {
+                                        map.removeLayer(feature);
+                                    }
+                                    if (tipo_osm === "node") {
+                                        feature = L.circle(loc1, 25, {color: 'green', fill: false}).addTo(map);
+                                        map.fitBounds(bounds);
+                                        map.setZoom(18);
+                                    } else {
+                                        var loc3 = new L.LatLng(lat1, lng2);
+                                        var loc4 = new L.LatLng(lat2, lng1);
+                                        feature = L.polyline([loc1, loc4, loc2, loc3, loc1], {color: 'red'}).addTo(map);
+                                        map.fitBounds(bounds);
+                                    }
+                                }
+
+                                function direccion_buscador() {
+                                    var entrada = document.getElementById("direccion");
+                                    document.getElementById("resultado").style.display = "block";
+
+                                    $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + entrada.value, function (data) {
+                                        var items = [];
+
+                                        $.each(data, function (key, val) {
+                                            bb = val.boundingbox;
+                                            items.push("<li><a href='#' onclick='elegirDireccion(" + bb[0] + ", " + bb[2] + ", " + bb[1] + ", " + bb[3] + ", \"" + val.tipo_osm + "\");return false;'>" + val.display_name + '</a></li>');
+                                        });
+
+                                        $('#resultado').empty();
+                                        if (items.length != 0) {
+                                            $('<p>', {html: "Resultados de la b&uacute;queda:<button type='button' id='salir' style='float: right;margin-right:10px'>X</button>"}).appendTo('#resultado');
+                                            $('<ul/>', {
+                                                'class': 'my-new-list',
+                                                html: items.join('')
+                                            }).appendTo('#resultado');
+                                            
+                                        } else {
+                                            $('<p>', {html: "Ningun resultado encontrado.<button type='button' id='salir' style='float: right;margin-right:10px'>X</button>"}).appendTo('#resultado');
+                                        }
+                                        $("#salir").click(function () {
+                                        document.getElementById("resultado").style.display = "none";
+                                        });
+                                    });
+                                }                            
+                                
+        </script>
+    </body>
+</html>
