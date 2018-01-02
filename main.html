@@ -3,6 +3,7 @@
     <head>    
         <title>Geolocalizacion</title>
         <meta charset="UTF-8">     
+        <link rel="icon" type="image/png" href="image/favicon.ico" sizes="32x32" />
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
         <!-- flat-ui bootstrap -->
@@ -49,16 +50,17 @@
         <script src="js/lib/leaflet.spin.js"></script>
         <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
         <script src="leaflet-plugins-1.9.3\layer\tile\Google.js"></script>
+        <script type="text/javascript" src="http://www.ign.gob.ar/argenmap/argenmap.jquery.min.js"></script>
 
 
     </head>
     <body>
-        <div class="row">
+        <div class="row" style="background-color: #BDBDBD">
             <div id="paisdigitalizq" class="col-xs-6 col-sm-6 col-md-6 ">
-                <img title="IDE" src="image/logoizquierda.png" style="width: 556px"> 
+                <img title="IDE" src="image/logoizquierda1.png" style="width: 556px"> 
             </div>
             <div id="paisdigitalder" class="col-xs-6 col-sm-6 col-md-6">
-                <img title="Logo Municipalidad" src="image/logoderecha.png" style="width: 556px;height: 80px;float:right" alt=""> 
+                <img title="Logo Municipalidad" src="image/logoderecha2.png" style="width: 556px;height: 80px;float:right" alt=""> 
             </div>
         </div>
         <div class="row">
@@ -80,7 +82,7 @@
                                 <li class="list-group-item">
                                     Puntos Digitales
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="puntosDigitales" name="someSwitchOption001" type="checkbox"/>
+                                        <input class="checkbox_options" id="puntosDigitales" type="checkbox"/>
                                         <label for="puntosDigitales" class="label-primary"></label>
                                     </div>                                    
                                 </li>
@@ -90,37 +92,37 @@
                                 <li class="list-group-item">
                                     Centro Transmisión de Datos
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="transmisionDatos" name="someSwitchOption001" type="checkbox"/>
+                                        <input class="checkbox_options" id="transmisionDatos" type="checkbox"/>
                                         <label for="transmisionDatos" class="label-success"></label>
                                     </div>
                                 </li>
                                 <li class="list-group-item itemsTransmision item" style='display:none'> 
-                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Centro transmision datos - 4326&style=CentroTransmisionDatos&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?SERVICE=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Centro transmisión datos - 4326&style=CentroTransmisionDatos&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
                                 </li>
                                 <li class="list-group-item">
                                     Sucursales Correo
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="sucursalesCorreo" name="someSwitchOption001" type="checkbox"/>
+                                        <input class="checkbox_options" id="sucursalesCorreo" type="checkbox"/>
                                         <label for="sucursalesCorreo" class="label-info"></label>
                                     </div>
                                 </li>
                                 <li class="list-group-item itemsCorreo item" style='display:none'> 
-                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Sucursales correo - 4326&style=SucursalesCorreo&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?SERVICE=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Sucursales correo - 4326&style=SucursalesCorreo&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
                                 </li>                                
                                 <li class="list-group-item">
                                     Antenas Satelitales
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="antenasSatelitales" name="someSwitchOption001" type="checkbox"/>
+                                        <input class="checkbox_options" id="antenasSatelitales" type="checkbox"/>
                                         <label for="antenasSatelitales" class="label-warning"></label>
                                     </div>
                                 </li>   
                                 <li class="list-group-item itemsAntena item" style='display:none'> 
-                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Antenas satelitales - 4326&style=AntenasSatelitales&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?SERVICE=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Antenas satelitales - 4326&style=AntenasSatelitales&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
                                 </li>                                
                                 <li class="list-group-item">
                                     Establecimientos Educativos
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="establecimientosEducativos" name="someSwitchOption001" type="checkbox"/>
+                                        <input class="checkbox_options" id="establecimientosEducativos" type="checkbox"/>
                                         <label for="establecimientosEducativos" class="label-danger"></label>
                                     </div>
                                 </li>
@@ -128,18 +130,48 @@
                                     <input class="checkbox_options" id="estadoInternet" type="checkbox" /> Estado Internet
                                 </li>
                                 <li class="list-group-item itemsInternet item" style='display:none'> 
-                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Establecimientos educativos - Estado internet - 4326&style=EstablecimientosEducativos-EstadoInternet&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE;columnheight:90px" alt="referencias"> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?SERVICE=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Establecimientos educativos - Estado Internet - 3857&style=EstablecimientosEducativos-EstadoInternet&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE;columnheight:90px" alt="referencias"> 
                                 </li>
                                 <li class="list-group-item itemsEstablecimiento item" style='display:none'>                                        
                                     <input class="checkbox_options" id="InstalacionElectrica" type="checkbox" /> Tipo Instalación Eléctrica
                                 </li> 
                                 <li class="list-group-item itemsElectrica item" style='display:none'> 
-                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Establecimientos educativos - Tipo instalación eléctrica - 3857&style=EstablecimientosEducativos-TipoInstalacionElectrica&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?SERVICE=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:Establecimientos educativos - Tipo instalación eléctrica - 4326&style=EstablecimientosEducativos-TipoInstalacionElectrica&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Puntos WiFi
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="puntosWifi" type="checkbox"/>
+                                        <label for="puntosWifi" class="label-primary"></label>
+                                    </div>                                    
+                                </li>
+                                <li class="list-group-item itemsPuntosWifi item" style='display:none;'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:puntoswifi-4326&style=PuntosWifi&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Conectividad
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="conectividad" type="checkbox"/>
+                                        <label for="conectividad" class="label-primary"></label>
+                                    </div>                                    
+                                </li>
+                                <li class="list-group-item itemsConectividad item" style='display:none;'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:conectividad-4326&style=Conectividad&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
+                                </li>
+                                <li class="list-group-item">
+                                    Nodos
+                                    <div class="material-switch pull-right">
+                                        <input class="checkbox_options" id="nodos" type="checkbox"/>
+                                        <label for="nodos" class="label-primary"></label>
+                                    </div>                                    
+                                </li>
+                                <li class="list-group-item itemsNodos item" style='display:none;'> 
+                                    <img src="http://192.168.150.101:8080/geoserver/gwc/service/wms?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=PaisDigital:nodos-4326&style=Nodos&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
                                 </li>
                                 <li class="list-group-item">
                                     Ejidos Municipales
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="ejidos" name="someSwitchOption001" type="checkbox"/>
+                                        <input class="checkbox_options" id="ejidos" type="checkbox"/>
                                         <label for="ejidos" class="label-primary"></label>
                                     </div>                                    
                                 </li>
@@ -149,12 +181,16 @@
                                 <li class="list-group-item">
                                     Capa Base
                                     <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="capasBase" name="someSwitchOption001" type="checkbox" checked disabled/>
+                                        <input class="checkbox_options" id="capasBase" name="capabase" type="checkbox" checked disabled/>
                                         <label for="capasBase" class="label-default"></label>
                                     </div>
                                 </li>
                                 <li class="list-group-item itemsBase">                                        
-                                    <input class="checkbox_options" type="radio" id="calles" name="base" checked/> Open Street Map (Calles)
+                                    <input class="checkbox_options" type="radio" id="argmap" name="base" checked/> Argen Map
+                                </li>
+                                     
+                                <li class="list-group-item itemsBase">                                        
+                                    <input class="checkbox_options" type="radio" id="calles" name="base"/> Open Street Map (Calles)
                                 </li>
                                 <li class="list-group-item itemsBase">                                        
                                     <input class="checkbox_options" type="radio" id="satelite" name="base" /> Open Street Map (Satélite)
@@ -162,7 +198,6 @@
                                 <li class="list-group-item itemsBase">                                        
                                     <input class="checkbox_options" type="radio" id="dark" name="base" /> Open Street Map (Dark)
                                 </li>
-                                
                                 <!--
                                 <li class="list-group-item itemsBase item" style='display:none'>                                        
                                     <input class="checkbox_options" type="radio" id="gcalles" name="base" /> Google Map (Calles)
@@ -174,19 +209,6 @@
                                     <input class="checkbox_options" type="radio" id="ghibrido" name="base" /> Google Map (Híbrido)
                                 </li>
                                 -->
-                                <li class="list-group-item">
-                                    WMS IGN
-                                    <div class="material-switch pull-right">
-                                        <input class="checkbox_options" id="wmsign" name="someSwitchOption001" type="checkbox" />
-                                        <label for="capasBase" class="label-default"></label>
-                                    </div>
-                                </li>
-                                <li class="list-group-item itemsLimites">                                        
-                                    <input class="checkbox_options" type="checkbox" id="limites" /> Límite administrativo
-                                </li>
-                                <li class="list-group-item itemsLimites"> 
-                                    <img src="http://wms.ign.gob.ar:8080/geoserver/ows?service=WMS&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=ideign:LIMITE_POLITICO_ADMINISTRATIVO&LEGEND_OPTIONS=bgColor:0x34495C;fontColor:0xFFFFEE" alt="referencias"> 
-                                </li>                                
                             </ul>
                         </div> 
                     </div> 
